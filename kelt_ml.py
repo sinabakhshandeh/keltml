@@ -7,7 +7,7 @@ import os, sys
 from astropy.timeseries import BoxLeastSquares
 from astropy import units as u
 
-class Kelt():
+class Kelt:
 	
 	KELT_BINS = 250
 

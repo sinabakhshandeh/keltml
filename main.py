@@ -1,13 +1,22 @@
-from kelt_ml import Kelt
-import matplotlib.pyplot as plt
+from kltml import Kelt
 
-t0 = 2456924.6845
 path = 'KELT_N04_lc_040968_V01_comb_raw.dat'
-min_p = 1
-max_p = 30
 
 kelt = Kelt(path)
-kelt.period_finder(method = 'BLS_astropy')
-kelt.binned_statistic()
+# kelt.set_power_period(method='BLS_astropy')
+kelt.set_power_period(method='LS_astropy')
 
-print('done')
+kelt.weighted_mean_flux()
+kelt.normalized_flux_std()
+kelt.normalized_amplitude()
+kelt.normalized_MAD()
+kelt.beyond_1std()
+kelt.skew()
+
+
+print(f"Weigh:{kelt.mean}")
+print(f"STD:{kelt.std}")
+print(f"AMP:{kelt.amp}")
+print(f"MAD:{kelt.mad}")
+print(f"Beyon:{kelt.beyond}")
+print(f"skew:{kelt.skew}")
