@@ -12,11 +12,11 @@ kelt.normalized_amplitude()
 kelt.normalized_MAD()
 kelt.beyond_1std()
 kelt.skew()
-
+kelt.to_csv()
 
 print(f"Weigh:{kelt.mean}")
 print(f"STD:{kelt.std}")
 print(f"AMP:{kelt.amp}")
 print(f"MAD:{kelt.mad}")
 print(f"Beyon:{kelt.beyond}")
-print(f"skew:{kelt.skew}")
+print(f"skew:{kelt.skew_v}")

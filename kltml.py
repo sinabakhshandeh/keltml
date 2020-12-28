@@ -1,10 +1,13 @@
+import os
+import sys
+
 import numpy as np
 import pandas as pd
 from astropy.timeseries import LombScargle
-import sys
 from astropy.timeseries import BoxLeastSquares
 from astropy import units as u
 from scipy import stats
+
 
 class Kelt:
 
@@ -118,7 +121,16 @@ class Kelt:
     def skew(self):
         """Measure the skew of the flux measurements"""
 
-        skew = lambda flux: stats.skew(flux)
+        skew_l = lambda flux: stats.skew(flux)
 
         flux = getattr(self, "df").flux
-        setattr(self, 'skew', skew(flux))
+        setattr(self, 'skew_v', skew_l(flux))
+
+    def to_csv(self):
+        df = pd.read_csv('dataset.csv')
+        filename, file_extension = os.path.splitext(self.path)
+        values = [
+            filename, self.power, self.period, self.mean, self.std,
+            self.amp, self.mad, self.beyond, self.skew_v]
+        df.loc[len(df)] = values 
+        df.to_csv('dataset.csv')
